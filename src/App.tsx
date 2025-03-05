@@ -1,7 +1,3 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 import './App.scss';
 
 console.clear();
@@ -28,9 +24,9 @@ let arrOfAllTasks_1lvl: Task[] = [];
 
 function App() {
     return (
-        <div>
-            <h2>Начальный текст</h2>
-            <Generate_ul  arrElement={arrOfAllTasks_1lvl} />
+        <div className="main-block">
+            <h2>Список задач:</h2>
+            <Generate_ul arrElement={arrOfAllTasks_1lvl} />
         </div>
     );
 }
@@ -50,7 +46,7 @@ function Push_Li_Element(current_element: any) {
     );
 }
 
-// Добавляет на страницу все элементы этого уровня, из массива
+// Добавляет на страницу все задачи этого уровня, из массива
 function Generate_ul({ arrElement }: { arrElement: Task[] }) {
     const body_ul = [];
 
@@ -61,10 +57,14 @@ function Generate_ul({ arrElement }: { arrElement: Task[] }) {
     }
 
     return (
-        <ul className={arrElement && arrElement[0].parent == null ? "mainList" : ""}>
-          {body_ul}
-        </ul>
+        <ul> {body_ul} </ul>
     );
+
+    // return (
+    //     <ul className={arrElement && arrElement[0].parent == null ? "mainList" : ""}>
+    //       {body_ul}
+    //     </ul>
+    // );
 }
 
 
@@ -150,8 +150,6 @@ function Generate_ul({ arrElement }: { arrElement: Task[] }) {
 */
 
 
-
-
 // Создаем подзадачи для задачи 2
 let subtask2_1 = new Task(3, true, "2_1", null, []);
 let subtask2_2_1 = new Task(4, true, "2_2_1", null, []);
@@ -188,7 +186,30 @@ for (let i = 0; i < arrOfAllTasks_1lvl.length; i++) {
 
 
 
+/*
+    Логика проверки:
+    При отмечании checkbox, проводятся 2 действия:
 
+    1. Выделить все подзадачи текущей задачи:
+
+        Пройтись по всем children текущей Task
+        Проставить checked = true
+        В момент выполнения этого пункта, для каждой подзадачи, 
+        которой мы проставляем checked = true, должна также вызываться эта проверка. 
+        Что бы все подзадачи в выделенной задаче, также становились checked = true. 
+        Если не напишем автоматическую логику событиями, то можно просто на этом этапе 
+        вызывать процедуру проверки, для каждой отмечаемой подзадачи.
+
+    2. Проверить, выделены ли все подзадачи у родительской задачи?
+
+        parent текущей задачи не равен null?
+
+        Тогда переходим на него, и проходим по всем его children, и смотрим: 
+        если у них у всех checked == true, то тогда данную рассматриваемую задачу 
+        тоже проставлеям в checked = true
+
+        И после этого запускаем заново пункт 2, для parent текущей задачи.
+*/
 
 
 

@@ -1,6 +1,10 @@
-html {
-    background-color: rgb(39, 39, 39);
-    color: rgb(231, 231, 231);
+body {
+    // background-color: rgb(39, 39, 39);
+    // color: rgb(231, 231, 231);
+    background-color: rgb(240, 240, 240);
+    color: rgb(39, 39, 39);
+    font-size: 18px;
+    font-family: "Arial", sans-serif;      
 }
 
 // .mainList {
@@ -10,3 +14,25 @@ html {
 ul {
     list-style: none;
 }  
+
+li {
+    padding-right: 10px;
+    // border: solid 1px black;
+}
+
+.main-block {
+    // background-color: red;
+    // border: solid 1px black;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+h2 {
+    text-align: center;
+    padding-bottom: 20px;
+}
