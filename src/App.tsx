@@ -35,15 +35,21 @@ function App() {
     );
 }
 
+function PushLiElement(current_element: any, i:number) {
+    return(
+        <li key={i}>
+            <input type="checkbox" />
+            {current_element.text_task}
+        </li>
+    );
+}
+
 function GenerateListOfTask({ arrOfAllTasks_1lvl }: { arrOfAllTasks_1lvl: Task[] }) {
     const body_ul = [];
 
-    for (let i = 0; i < arrOfAllTasks_1lvl.length; i++) {
+    for (let i = 0; i < arrOfAllTasks_1lvl.length; i++) {        
         body_ul.push(
-            <li key={i}>
-                <input type="checkbox" />
-                {arrOfAllTasks_1lvl[i].text_task}
-            </li>
+            PushLiElement(arrOfAllTasks_1lvl[i], i)
         );
     }
 
