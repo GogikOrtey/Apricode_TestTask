@@ -26,7 +26,9 @@ function App() {
     return (
         <div className="main-block">
             <h2>Список задач:</h2>
-            <Generate_ul arrElement={arrOfAllTasks_1lvl} />
+            <div className="ul-block">
+                <Generate_ul arrElement={arrOfAllTasks_1lvl} />
+            </div>
         </div>
     );
 }
