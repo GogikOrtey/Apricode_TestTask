@@ -29,7 +29,38 @@ function App() {
     return (
         <div>
             <h2>Начальный текст</h2>
+            <GenerateListOfTask/>
         </div>
+    );
+}
+
+function GenerateListOfTask() {
+    // Используем значения из массива arrOfAllTasks_1lvl
+
+    return(
+        <ul className="mainList">
+            <li>Задача 1</li>
+            <li>Задача 2
+                <ul>
+                    <li>Подзадача 1</li>
+                    <li>Подзадача 2
+                        <ul>
+                            <li>Подзадача 1</li>
+                        </ul>
+                    </li>
+                    <li>Подзадача 3</li>
+                </ul>
+            </li>
+            <li>Задача 3
+                <ul>
+                    <li>Подзадача 1
+                        <ul>
+                            <li>Подзадача 1</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     );
 }
 
