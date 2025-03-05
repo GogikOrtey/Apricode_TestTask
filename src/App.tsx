@@ -23,47 +23,64 @@ class Task {
 }
 
 // Здесь будут храниться все задачи первого уровня
-let arrOfAllTasks_1lvl = [];
+let arrOfAllTasks_1lvl: Task[] = [];
+
 
 function App() {
     return (
         <div>
             <h2>Начальный текст</h2>
-            <GenerateListOfTask/>
+            <GenerateListOfTask  arrOfAllTasks_1lvl={arrOfAllTasks_1lvl} />
         </div>
     );
 }
 
-function GenerateListOfTask() {
-    // Используем значения из массива arrOfAllTasks_1lvl
+function GenerateListOfTask({ arrOfAllTasks_1lvl }: { arrOfAllTasks_1lvl: Task[] }) {
+    const body_ul = [];
 
-    return(
-        <ul className="mainList">
-            <li><input type="checkbox"/>Задача 1</li>
-            {/* <li><input type="checkbox" checked={true}/>Задача 2 */}
-            <li><input type="checkbox"/>Задача 2
-                <ul>
-                    <li> <input type="checkbox"/>Подзадача 1</li>
-                    <li>Подзадача 2
-                        <ul>
-                            <li>Подзадача 1</li>
-                        </ul>
-                    </li>
-                    <li>Подзадача 3</li>
-                </ul>
+    for (let i = 0; i < arrOfAllTasks_1lvl.length; i++) {
+        body_ul.push(
+            <li key={i}>
+                <input type="checkbox" />
+                {arrOfAllTasks_1lvl[i].text_task}
             </li>
-            <li>Задача 3
-                <ul>
-                    <li>Подзадача 1
-                        <ul>
-                            <li>Подзадача 1</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    );
+        );
+    }
+
+    return <ul className="mainList">{body_ul}</ul>;
 }
+
+
+// function GenerateListOfTask() {
+//     // Используем значения из массива arrOfAllTasks_1lvl
+
+//     return(
+//         <ul className="mainList">
+//             <li><input type="checkbox"/>Задача 1</li>
+//             {/* <li><input type="checkbox" checked={true}/>Задача 2 */}
+//             <li><input type="checkbox"/>Задача 2
+//                 <ul>
+//                     <li> <input type="checkbox"/>Подзадача 1</li>
+//                     <li>Подзадача 2
+//                         <ul>
+//                             <li>Подзадача 1</li>
+//                         </ul>
+//                     </li>
+//                     <li>Подзадача 3</li>
+//                 </ul>
+//             </li>
+//             <li>Задача 3
+//                 <ul>
+//                     <li>Подзадача 1
+//                         <ul>
+//                             <li>Подзадача 1</li>
+//                         </ul>
+//                     </li>
+//                 </ul>
+//             </li>
+//         </ul>
+//     );
+// }
 
 
 // Создадим структуру списка для тестирования:
@@ -79,6 +96,8 @@ function GenerateListOfTask() {
     - Подзадача 1
     - - Подзадача 1
 */
+
+
 
 
 // Создаем подзадачи для задачи 2
@@ -105,11 +124,9 @@ arrOfAllTasks_1lvl = [task1, task2, task3];
 
 
 console.log("Все существующие задачи:");
-for(let i = 0; i < arrOfAllTasks_1lvl.length; i++) {
+for (let i = 0; i < arrOfAllTasks_1lvl.length; i++) {
     console.log(arrOfAllTasks_1lvl[i]);
 }
-
-
 
 
 
