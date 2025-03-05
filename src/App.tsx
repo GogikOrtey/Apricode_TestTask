@@ -15,23 +15,41 @@ interface Task {
 function App() {
     return (
         <div>
-            <p>Начальный текст</p>
+            <h2>Начальный текст</h2>
         </div>
     );
 }
 
-export default App
-
 console.log("123");
 
-// Создание нового объекта типа Task
-const newTask: Task = {
-    id: 1,
-    checked: false,
-    text_task: "Это моя первая задача",
-    parent: null,
-    children: [] // Пока без подзадач
-};
+// Здесь будут храниться все задачи первого уровня
+let arrOfAllTasks_1lvl = [];
+
+// Функция, для более удобного создания задач
+function CreateTask(inp_id:number, inp_checked:boolean, inp_text_task:string, inp_parent:any, inp_children=[]): Task {
+    let newTask: Task = {
+        id: inp_id,
+        checked: inp_checked,
+        text_task: inp_text_task,
+        parent: inp_parent,
+        children: inp_children 
+    };
+
+    return newTask;
+}
+
+// // Создание нового объекта типа Task
+// const newTask: Task = {
+//     id: 1,
+//     checked: false,
+//     text_task: "Это моя первая задача",
+//     parent: null,
+//     children: [] // Пока без подзадач
+// };
+
+let newTask = CreateTask(1, true, "123", null);
 
 // Вывод объекта в консоль
 console.log("Созданная задача:", newTask);
+
+export default App
