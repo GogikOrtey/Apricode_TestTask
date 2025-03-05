@@ -6,13 +6,24 @@ import './App.scss';
 
 console.clear();
 
-interface Task {
-    id: number;		        // Уникальный номер задачи (целое число с 1)
-    checked: boolean;	    // Выделена ли задача
-    text_task: string;	    // Текст задачи
-    parent: Task | null;    // Ссылка на родительскую задачу, null для корневых задач
-    children: Task[];	    // Все подзадачи текущей задачи
+class Task {
+    id: number;                 // Уникальный номер задачи (целое число с 1)
+    checked: boolean;           // Выделена ли задача
+    text_task: string;          // Текст задачи
+    parent: Task | null;        // Ссылка на родительскую задачу, null для корневых задач
+    children: Task[];           // Все подзадачи текущей задачи
+
+    constructor(id: number, checked: boolean, text_task: string, parent: Task | null = null, children: Task[] = []) {
+        this.id = id;
+        this.checked = checked;
+        this.text_task = text_task;
+        this.parent = parent;
+        this.children = children;
+    }
 }
+
+// Здесь будут храниться все задачи первого уровня
+let arrOfAllTasks_1lvl = [];
 
 function App() {
     return (
@@ -22,38 +33,8 @@ function App() {
     );
 }
 
-console.log("123");
 
-// Здесь будут храниться все задачи первого уровня
-let arrOfAllTasks_1lvl = [];
-
-// Функция, для более удобного создания задач
-function CreateTask(inp_id:number, inp_checked:boolean, inp_text_task:string, inp_parent:any, inp_children:any): Task {
-    let newTask: Task = {
-        id: inp_id,
-        checked: inp_checked,
-        text_task: inp_text_task,
-        parent: inp_parent,
-        children: inp_children 
-    };
-
-    return newTask;
-}
-
-// // Создание нового объекта типа Task
-// const newTask: Task = {
-//     id: 1,
-//     checked: false,
-//     text_task: "Это моя первая задача",
-//     parent: null,
-//     children: [] // Пока без подзадач
-// };
-
-// let task1_1 = CreateTask(1, true, "task1_1", null, []);
-// let task1 = CreateTask(1, true, "task1", null, [task1_1]);
-
-// arrOfAllTasks_1lvl.push(task1);
-
+// Создадим структуру списка для тестирования:
 
 /*
     Задача 1
@@ -69,23 +50,23 @@ function CreateTask(inp_id:number, inp_checked:boolean, inp_text_task:string, in
 
 
 // Создаем подзадачи для задачи 2
-let subtask2_1 = CreateTask(3, true, "2_1", null, []);
-let subtask2_2_1 = CreateTask(4, true, "2_2_1", null, []);
-let subtask2_2 = CreateTask(5, true, "2_2", null, [subtask2_2_1]);
-let subtask2_3 = CreateTask(6, true, "2_3", null, []);
+let subtask2_1 = new Task(3, true, "2_1", null, []);
+let subtask2_2_1 = new Task(4, true, "2_2_1", null, []);
+let subtask2_2 = new Task(5, true, "2_2", null, [subtask2_2_1]);
+let subtask2_3 = new Task(6, true, "2_3", null, []);
 
 // Создаем задачу 2 с подзадачами
-let task2 = CreateTask(2, true, "2", null, [subtask2_1, subtask2_2, subtask2_3]);
+let task2 = new Task(2, true, "2", null, [subtask2_1, subtask2_2, subtask2_3]);
 
 // Создаем подзадачи для задачи 3
-let subtask3_1_1 = CreateTask(8, true, "3_1_1", null, []);
-let subtask3_1 = CreateTask(7, true, "3_1", null, [subtask3_1_1]);
+let subtask3_1_1 = new Task(8, true, "3_1_1", null, []);
+let subtask3_1 = new Task(7, true, "3_1", null, [subtask3_1_1]);
 
 // Создаем задачу 3 с подзадачами
-let task3 = CreateTask(9, true, "3", null, [subtask3_1]);
+let task3 = new Task(9, true, "3", null, [subtask3_1]);
 
 // Создаем задачу 1 (без подзадач)
-let task1 = CreateTask(1, true, "1", null, []);
+let task1 = new Task(1, true, "1", null, []);
 
 // Итоговая структура
 arrOfAllTasks_1lvl = [task1, task2, task3];
