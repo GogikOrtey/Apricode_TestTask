@@ -30,36 +30,82 @@ function App() {
     return (
         <div>
             <h2>Начальный текст</h2>
-            <GenerateListOfTask  arrOfAllTasks_1lvl={arrOfAllTasks_1lvl} />
+            <Generate_ul  arrElement={arrOfAllTasks_1lvl} />
         </div>
     );
 }
 
-function PushLiElement(current_element: any, i:number) {
-    return(
-        <li key={i}>
+// Добавляет один элемент
+// Если у этой задачи есть подзадачи, то вызывается Generate_ul, которая
+// пройдёт по всем подзадачам этой задачи, и добавит их в список на этом уровне
+function Push_Li_Element(current_element: any) {
+    return (
+        <li key={current_element.id}>
             <input type="checkbox" />
             {current_element.text_task}
+            {current_element.children && current_element.children.length > 0 && (
+                <Generate_ul arrElement={current_element.children} />
+            )}
         </li>
     );
 }
 
-function GenerateListOfTask({ arrOfAllTasks_1lvl }: { arrOfAllTasks_1lvl: Task[] }) {
+// Добавляет на страницу все элементы этого уровня, из массива
+function Generate_ul({ arrElement }: { arrElement: Task[] }) {
     const body_ul = [];
 
-    for (let i = 0; i < arrOfAllTasks_1lvl.length; i++) {        
+    for (let i = 0; i < arrElement.length; i++) {        
         body_ul.push(
-            PushLiElement(arrOfAllTasks_1lvl[i], i)
+            Push_Li_Element(arrElement[i])
         );
     }
 
-    return <ul className="mainList">{body_ul}</ul>;
+    return (
+        <ul className={arrElement && arrElement[0].parent == null ? "mainList" : ""}>
+          {body_ul}
+        </ul>
+    );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // function GenerateListOfTask() {
 //     // Используем значения из массива arrOfAllTasks_1lvl
-
 //     return(
 //         <ul className="mainList">
 //             <li><input type="checkbox"/>Задача 1</li>
@@ -89,9 +135,9 @@ function GenerateListOfTask({ arrOfAllTasks_1lvl }: { arrOfAllTasks_1lvl: Task[]
 // }
 
 
-// Создадим структуру списка для тестирования:
-
 /*
+    // Создадим структуру списка для тестирования:
+
     Задача 1
     Задача 2
     - Подзадача 1
