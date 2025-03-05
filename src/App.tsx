@@ -39,10 +39,11 @@ function GenerateListOfTask() {
 
     return(
         <ul className="mainList">
-            <li>Задача 1</li>
-            <li>Задача 2
+            <li><input type="checkbox"/>Задача 1</li>
+            {/* <li><input type="checkbox" checked={true}/>Задача 2 */}
+            <li><input type="checkbox"/>Задача 2
                 <ul>
-                    <li>Подзадача 1</li>
+                    <li> <input type="checkbox"/>Подзадача 1</li>
                     <li>Подзадача 2
                         <ul>
                             <li>Подзадача 1</li>
